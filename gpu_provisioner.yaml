@@ -1,0 +1,31 @@
+apiVersion: karpenter.sh/v1alpha5
+kind: Provisioner
+metadata:
+  name: gpu
+spec:
+  labels:
+    type: karpenter
+  requirements:
+  - key: node.kubernetes.io/instance-type
+    operator: In
+    values:
+    - p3.2xlarge
+  taints:
+  - effect: NoSchedule
+    key: nvidia.com/gpu
+    value: "true"
+  ttlSecondsAfterEmpty: 60
+  providerRef:
+    name: my-provider
+---
+apiVersion: karpenter.k8s.aws/v1alpha1
+kind: AWSNodeTemplate
+metadata:
+  name: my-provider
+spec:
+  amiSelector: 
+    aws::ids: ami-0349b04f7046bdc36
+  subnetSelector:
+    karpenter.sh/discovery: "eks-workshop" # replace with your cluster name
+  securityGroupSelector:
+    karpenter.sh/discovery: "eks-workshop" # replace with your cluster name
