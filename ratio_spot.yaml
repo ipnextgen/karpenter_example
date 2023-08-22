@@ -23,6 +23,6 @@ metadata:
   name: my-provider
 spec:
   subnetSelector:
-    karpenter.sh/discovery: "${CLUSTER_NAME}" # replace with your cluster name
+    karpenter.sh/discovery: "eks-workshop" # replace with your cluster name
   securityGroupSelector:
-    karpenter.sh/discovery: "${CLUSTER_NAME}" # replace with your cluster name
+    karpenter.sh/discovery: "eks-workshop" # replace with your cluster name
