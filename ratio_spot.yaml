@@ -1,0 +1,28 @@
+apiVersion: karpenter.sh/v1alpha5
+kind: Provisioner
+metadata:
+  name: spot
+spec:
+  requirements:
+    - key: karpenter.sh/capacity-type
+      operator: In
+      values: ["spot"]
+    - key: capacity-spread
+      operator: In
+      values:
+      - "2"
+      - "3"
+      - "4"
+      - "5"
+  providerRef:
+    name: my-provider
+---
+apiVersion: karpenter.k8s.aws/v1alpha1
+kind: AWSNodeTemplate
+metadata:
+  name: my-provider
+spec:
+  subnetSelector:
+    karpenter.sh/discovery: "${CLUSTER_NAME}" # replace with your cluster name
+  securityGroupSelector:
+    karpenter.sh/discovery: "${CLUSTER_NAME}" # replace with your cluster name
