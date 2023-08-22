@@ -12,8 +12,6 @@ spec:
       values:
       - "2"
       - "3"
-      - "4"
-      - "5"
   providerRef:
     name: my-provider
 ---
