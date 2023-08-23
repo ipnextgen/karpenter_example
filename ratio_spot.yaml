@@ -23,4 +23,4 @@ spec:
   subnetSelector:
     karpenter.sh/discovery: "eks-workshop" # replace with your cluster name
   securityGroupSelector:
-    karpenter.sh/discovery: "eks-workshop" # replace with your cluster name
+    kubernetes.io/role/internal-elb: "1" # replace with your cluster name
