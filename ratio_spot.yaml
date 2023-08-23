@@ -21,6 +21,6 @@ metadata:
   name: my-provider
 spec:
   subnetSelector:
-    karpenter.sh/discovery: "eks-workshop" # replace with your cluster name
+    kubernetes.io/role/internal-elb: "1"
   securityGroupSelector:
-    kubernetes.io/role/internal-elb: "1" # replace with your cluster name
+    karpenter.sh/discovery: "eks-workshop" # replace with your cluster name
